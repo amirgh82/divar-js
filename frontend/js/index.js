@@ -1,4 +1,8 @@
-import { fetchPopularCities, setCityCookie } from "./utils/cities.js";
+import {
+  fetchPopularCities,
+  setCityCookie,
+  getCityCookie,
+} from "./utils/cities.js";
 
 const $ = document;
 const popularCitiesParent = $.querySelector(".main__cities-list .row");
@@ -22,10 +26,19 @@ const showPopularCities = (cities) => {
   });
 };
 
+const loadCityPosts = (cityCookie) => {
+    if (cityCookie) {
+        window.location.href = `http://127.0.0.1:5500/frontend/pages/main.html?${city}`;
+    }
+};
+
 window.cityClickHandler = cityClickHandler;
 
 window.addEventListener("load", async () => {
   const popularCities = await fetchPopularCities();
   console.log(popularCities);
   showPopularCities(popularCities);
+
+  const cityCookie = getCityCookie();
+  loadCityPosts(cityCookie);
 });
