@@ -1,3 +1,10 @@
+const fetchCities = async () => {
+  const res = await fetch(`http://localhost:4000/api/cities`);
+  const cities = await res.json();
+
+  return cities;
+};
+
 const fetchPopularCities = async () => {
   const res = await fetch("http://localhost:4000/api/cities/popular");
   const popularCities = await res.json();
@@ -21,4 +28,4 @@ const getCityCookie = () => {
   return result;
 };
 
-export { fetchPopularCities, setCityCookie, getCityCookie };
+export { fetchCities, fetchPopularCities, setCityCookie, getCityCookie };
